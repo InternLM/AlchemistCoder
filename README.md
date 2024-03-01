@@ -16,7 +16,7 @@ Cairong Zhao<sup>1†</sup>
 >
 > <sup>1</sup> Tongji University, <sup>2</sup> Shanghai AI Laboratory, <sup>3</sup> Chinese University of Hong Kong
 
-[![arXiv](https://img.shields.io/badge/arXiv-2307.04725-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-xxxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxx)
 [![license](https://raw.githubusercontent.com/InternLM/InternLM/main/assets/license.svg)](./LICENSE)
 
 <p align="left">
