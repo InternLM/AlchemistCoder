@@ -2,7 +2,7 @@
 
 > Zifan Song<sup>1,2*</sup>,
 Yudong Wang<sup>2*</sup>,
-Wenwei Zhang<sup>2</sup>,
+Wenwei Zhang<sup>2*</sup>,
 Kuikun Liu<sup>2</sup>,
 Chengqi Lyu<sup>2</sup>,
 Demin Song<sup>2</sup>,
