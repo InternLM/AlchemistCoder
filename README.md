@@ -185,6 +185,7 @@ Please refer to [**InternLM**](https://github.com/InternLM/InternLM/tree/main).
 If you have any questions, please create an issue on this repository or contact us at:
 - sugger@tongji.edu.cn
 - wangyudong@pjlab.org.cn
+- zhangwenwei@pjlab.org.cn
 
 ## 🌟 Citation
 If you find our work useful, please consider citing:
