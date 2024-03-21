@@ -42,7 +42,7 @@ meta_template_ds = dict(
 
 # ------------------ default settings ↓ ------------------
 # careful to change the following settings
-AlchemistCoder_L_7B_hf_path = '/cpfs01/shared/public/public_hdd/songzifan/ckpt/AlchemistCoder_hf/AlchemistCoder-L-7B-hf-release'
+AlchemistCoder_L_7B_hf_path = 'your AlchemistCoder-L-7B path'
 AlchemistCoder_L_7B_hf = dict(
     type=HuggingFaceCausalLM,
     abbr='AlchemistCoder_L_7B_hf',
@@ -91,7 +91,7 @@ AlchemistCoder_CL_7B_hf = dict(
 AlchemistCoder_DS_7B_hf_path = 'your AlchemistCoder-DS-6.7B path'
 AlchemistCoder_DS_7B_hf = dict(
     type=HuggingFaceCausalLM,
-    abbr='AlchemistCoder_DS_7B_hf',
+    abbr='AlchemistCoder_DS_6.7B_hf',
     path=AlchemistCoder_DS_7B_hf_path,
     tokenizer_path=AlchemistCoder_DS_7B_hf_path,
     model_kwargs=dict(
@@ -112,8 +112,8 @@ AlchemistCoder_DS_7B_hf = dict(
 
 models = [
     AlchemistCoder_L_7B_hf,
-    # AlchemistCoder_CL_7B_hf,
-    # AlchemistCoder_DS_7B_hf,
+    AlchemistCoder_CL_7B_hf,
+    AlchemistCoder_DS_7B_hf,
 ]
 
 # set all models

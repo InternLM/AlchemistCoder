@@ -169,9 +169,11 @@ The above code will generate the following result:
 > Note that this implementation assumes that the graph is a directed graph, and it uses a heap data structure to efficiently select the node with the smallest distance at each step.
 
 ## 🧪 Evaluation
-To effortlessly evaluate *AlchemistCoder* series models across a wide range of benchmarks, such as HumanEval and MBPP, you can use [**OpenCompass**](https://github.com/open-compass) with just one command. To get started, [install OpenCompass](https://opencompass.readthedocs.io/en/latest/get_started/installation.html), adopt the provided configuration file in ```evaluation/configs``` and simply run the command below:
+To effortlessly evaluate *AlchemistCoder* series models across a wide range of benchmarks, such as HumanEval and MBPP, you can use [**OpenCompass**](https://github.com/open-compass) with just one command. To get started, [install OpenCompass](https://opencompass.readthedocs.io/en/latest/get_started/installation.html), adopt the provided configuration file in ```eval/opencompass/configs``` and simply run the commands below:
 ```bash
-python run.py configs/eval_alchemistcoder_hf_models.py
+cd opencompass
+python run.py configs/eval_alchemistcoder_models_hf_official/eval_alchemistcoder_models_hf_code.py
+python run.py configs/eval_alchemistcoder_models_hf_official/eval_alchemistcoder_models_hf_coreset.py
 ```
 Make sure to adjust the directory structure and arguments according to your requirements.
 
