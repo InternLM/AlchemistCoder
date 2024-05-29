@@ -1,4 +1,4 @@
-# AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Relabeling on Multi-source Data
+# AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Tuning on Multi-source Data
 
 > Zifan Song<sup>1,2*</sup>,
 Yudong Wang<sup>2*</sup>,
@@ -19,23 +19,22 @@ Cairong Zhao<sup>1†</sup>
 [![arXiv](https://img.shields.io/badge/arXiv-xxxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxx)
 [![license](https://raw.githubusercontent.com/InternLM/InternLM/main/assets/license.svg)](./LICENSE)
 
-<p align="left">
-    <i class="fas fa-cube"></i>📦&nbsp;<a href="#-models">Models</a>
-    | 🚀&nbsp;<a href="#-quick-start"> Quick Start</a>
-    | 😃&nbsp;<a href="#-acknowledgments">Acknowledgements</a>
-    | 📧&nbsp;<a href="#-contact">Contact</a>
-    | 🌟&nbsp;<a href="#-citation">Citation</a>
-</p>
+[[🤗 HuggingFace](https://huggingface.co/internlm/AlchemistCoder-DS-6.7B)]
+[[📃 Paper](https://arxiv.org/abs/xxxxx)]
+[[🌐 Project Page](https://internlm.github.io/AlchemistCoder/)]
+[<a href="#-quick-start"> 🚀&nbsp;Quick Start</a>]
+[<a href="#-acknowledgments">😃&nbsp;Acknowledgements</a>]
+[<a href="#-citation">🌟&nbsp;Citation</a>]
 
 ## 📢 News
-* **(March xx, 2024)**
+* **(May 30, 2024)**
   - Paper and models for *AlchemistCoder* are released 🔓
 
 
 ## ✨ Highlights
 
 ![main figure](assets/overview.png)
-> **<p align="justify"> Abstract:** *Open-source Large Language Models (LLMs) and their specialized variants, particularly Code LLMs, have recently delivered impressive performance. However, previous Code LLMs are typically fine-tuned on a single dataset, which may insufficiently elicit the potential of pre-trained Code LLMs. This paper presents AlchemistCoder, a series of Code LLMs with better code generation and generalization abilities fine-tuned on multi-source data. To harmonize the inherent conflicts among the various styles and qualities in multi-source data, we introduce data-specific prompts, termed AlchemistPrompts, inspired by hindsight relabeling, to improve the consistency between instructions and responses. We further propose to incorporate the data evolution process itself into the fine-tuning data to enhance the code comprehension capabilities of LLMs, including instruction evolution, data filtering, and code review. Extensive experiments demonstrate that AlchemistCoder holds a clear lead among all models of the same size (6.7B/7B) and rivals or even surpasses larger models (15B/33B/70B), showcasing the efficacy of our method in refining instruction-following capabilities and advancing the boundaries of code intelligence.* </p>
+> **<p align="justify"> Abstract:** *Open-source Large Language Models (LLMs) and their specialized variants, particularly Code LLMs, have recently delivered impressive performance. However, previous Code LLMs are typically fine-tuned on single-source data with limited quality and diversity, which may insufficiently elicit the potential of pre-trained Code LLMs. In this paper, we present AlchemistCoder, a series of Code LLMs with enhanced code generation and generalization capabilities fine-tuned on multi-source data. To achieve this, we pioneer to unveil inherent conflicts among the various styles and qualities in multi-source code corpora and introduce data-specific prompts with hindsight relabeling, termed AlchemistPrompts, to harmonize different data sources and instruction-response pairs. Additionally, we propose incorporating the data construction process into the fine-tuning data as code comprehension tasks, including instruction evolution, data filtering, and code review. Extensive experiments demonstrate that AlchemistCoder holds a clear lead among all models of the same size (6.7B/7B) and rivals or even surpasses larger models (15B/33B/70B), showcasing the efficacy of our method in refining instruction-following capabilities and advancing the boundaries of code intelligence.* </p>
 
 - **AlchemistPrompts**: Designed as data-specific prompts for harmonizing inherent conflicts in multi-source data and mitigating the instruction/response misalignment at a fined-grained level.
   
@@ -70,6 +69,12 @@ We focus on comparing the ```pass@1``` metric and detailed evaluation results ar
 
 ## 📦 Models
 All *AlchemistCoder* series models have been open-source on Hugging Face, including AlchemistCoder-L-7B, AlchemistCoder-CL-7B, and AlchemistCoder-DS-6.7B. You can access our models via the following link:
+|    Dataset    |                        Huggingface Repo                        |
+| :---------: | :------------------------------------------------------------: |
+| AlchemistCoder-L-7B  | [Model Link](https://huggingface.co/internlm/AlchemistCoder-L-7B)  |
+| AlchemistCoder-CL-7B  | [Model Link](https://huggingface.co/internlm/AlchemistCoder-CL-7B)  |
+| AlchemistCoder-DS-6.7B  | [Model Link](https://huggingface.co/internlm/AlchemistCoder-DS-6.7B)  |
+
 
 ## 🚀 Quick Start
 ```python
@@ -186,7 +191,6 @@ Please refer to [**InternLM**](https://github.com/InternLM/InternLM/tree/main).
 ## 📧 Contact
 If you have any questions, please create an issue on this repository or contact us at:
 - sugger@tongji.edu.cn
-- wangyudong@pjlab.org.cn
 - zhangwenwei@pjlab.org.cn
 
 ## 🌟 Citation
