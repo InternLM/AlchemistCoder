@@ -473,11 +473,12 @@ pre {
 <script type="text/javascript"></script>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
     <head>
-        <title> CriticBench: Evaluating Large Language Model as Critic </title>
+        <title> AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Tuning on Multi-source Data </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta property="og:description" content="A comprehensive benchmark for evaluating critique ability of LLMs"/>
+        <meta property="og:description" content="A series Code LLMs developed from instruction tuning on harmonized multi-source data."/>
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-        <!--<link rel="icon" href = "https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/512px/1f6e0.png">-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!-- <link rel="icon" href="https://images.emojiterra.com/google/noto-emoji/unicode-15.0/color/512px/1f9e0.png"> -->
     </head>
 
  <body>
@@ -485,15 +486,15 @@ pre {
 <div class="container">
     <div class="paper-title">
     <h1> 
-        AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Relabeling on Multi-source Data
+        AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Tuning on Multi-source Data
     </div>
 
     <div id="authors">
         <center>
             <div class="author-row-new">
                 Zifan Song<sup>1,2*</sup>,
-                Wenwei Zhang<sup>2*</sup>,
-                <a href="https://zhangwenwei.cn/">Wenwei Zhang<sup>2</sup></a>,
+                Yudong Wang<sup>2*</sup>,
+                <a href="https://zhangwenwei.cn/">Wenwei Zhang<sup>2*</sup></a>,
                 Kuikun Liu<sup>2</sup>,
                 Chengqi Lyu<sup>2</sup>,
                 Demin Song<sup>2</sup>,
@@ -521,25 +522,25 @@ pre {
 
         <div>
             <div class="paper-btn-parent">
-            <a class="paper-btn-small" href="https://arxiv.org/abs/2402.13764">
+            <a class="paper-btn" href="https://arxiv.org/abs/2402.13764">
                 <span class="material-icons"> description </span> 
                 Paper
             </a>
-            <a class="paper-btn-small" href="https://github.com/MatCaviar/AlchemistCoder">
+            <a class="paper-btn" href="https://github.com/InternLM/AlchemistCoder">
                 <span class="material-icons"> code </span>
                 Code
             </a>
-            <a class="paper-btn" href=".html">
-                <nobr>
-                    <span class="material-icons"> description </span>
-                    Models
-                </nobr>
+            <a class="paper-btn" href="https://huggingface.co/internlm/AlchemistCoder-DS-6.7B">
+                <span class="material-icons"> sort </span>
+                Models
             </a>
             </div>
         </div>
     </div>
     <section id="abstract"/>
         <h2 style="text-align: center;">Abstract</h2>
+        <hr>
+
         <div class="flex-row" style="width: 75%; margin: 0 auto;">
             <p>
                 Open-source Large Language Models (LLMs) and their specialized variants, particularly Code LLMs, have recently delivered impressive performance. However, previous Code LLMs are typically fine-tuned on a single dataset, which may insufficiently elicit the potential of pre-trained Code LLMs. This paper presents AlchemistCoder, a series of Code LLMs with better code generation and generalization abilities fine-tuned on multi-source data. To harmonize the inherent conflicts among the various styles and qualities in multi-source data, we introduce data-specific prompts, termed AlchemistPrompts, inspired by hindsight relabeling, to improve the consistency between instructions and responses. We further propose to incorporate the data evolution process itself into the fine-tuning data to enhance the code comprehension capabilities of LLMs, including instruction evolution, data filtering, and code review. Extensive experiments demonstrate that AlchemistCoder holds a clear lead among all models of the same size (6.7B/7B) and rivals or even surpasses larger models (15B/33B/70B), showcasing the efficacy of our method in refining instruction-following capabilities and advancing the boundaries of code intelligence.
@@ -548,7 +549,6 @@ pre {
     </section>
     
     <section id="teaser-image">
-        <hr>
         <center>
             <figure>
                 <a>
@@ -563,15 +563,20 @@ pre {
 
     <section id="introduction"/>
         <h2 style="text-align: center;">Introduction</h2>
-            <p>
-                "<b><i>Alchemist: Someone Who Transforms Things for the Better.</i></b>" —— Merriam Webster Dictionary 
+        <hr>
 
-                The training of Code LLMs mainly goes through pre-training and fine-tuning stages. Pioneer works have amassed extensive code data for pre-training, while recent open-source models highlight the effectiveness of high-quality or targeted code fine-tuning datasets. Despite these advancements, current fine-tuning methods mainly rely on a particular kind of code-related <B>question-answering<\B> dataset, unlike the pre-training stage that integrates code-related corpus from various sources. Such a discrepancy indicates that the fine-tuning data <B>may not be diverse enough<\B> to fully stimulate the capabilities of base models, resulting in limited performance, generalization, and robustness.
+            <p>
+                <center>
+                "<b><i>Alchemist: Someone Who Transforms Things for the Better.</i></b>" —— Merriam Webster
+                </center>
+            </p>
+
+                The training of Code LLMs mainly goes through pre-training and fine-tuning stages. Pioneer works have amassed extensive code data for pre-training, while recent open-source models highlight the effectiveness of high-quality or targeted code fine-tuning datasets. Despite these advancements, current fine-tuning methods mainly rely on a particular kind of code-related <B>question-answering</B> dataset, unlike the pre-training stage that integrates code-related corpus from various sources. Such a discrepancy indicates that the fine-tuning data <B>may not be diverse enough</B> to fully stimulate the capabilities of base models, resulting in limited performance, generalization, and robustness.
                 
             <p>
-                To tackle these challenges, we first explore integrating data from multiple sources and find that directly mixing (e.g., the DirectlyMix-L-7B model in Fig. 1) does not produce the desired effect due to inherent conflict of multi-source data. Therefore, we propose to adopt <B>hindsight relabeling<\B> for multi-source data mixing, which designs <B>data-specific prompts<\B> to <b>harmonize the inherent conflicts of different data sources<B> so that they can be used together to elicit the performance of base models more sufficiently. We term this form of prompts as <B><I>AlchemistPrompts<\I><\B>, inspired by the power and definition of <I>Alchemists<\I>. Apart from the conventional problem-solution data, we argue that the evolution of code data reflects higher-level capabilities and is also valuable for the learning of Code LLMs. Thus, we decompose the process of <B>data evolution<\B> into three tasks incorporated for training, including <B>instruction evolution<\B>, <B>data filtering<\B>, and <B>code review<\B>, enabling further improvements of code comprehension capabilities.            <p>
+                To tackle these challenges, we first explore integrating data from multiple sources and find that directly mixing (e.g., the DirectlyMix-L-7B model in Fig. 1) does not produce the desired effect due to inherent conflict of multi-source data. Therefore, we propose to adopt <B>hindsight relabeling</B> for multi-source data mixing, which designs <B>data-specific prompts</B> to <B>harmonize the inherent conflicts of different data sources</B> so that they can be used together to elicit the performance of base models more sufficiently. We term this form of prompts as <B><I>AlchemistPrompts</I></B>, inspired by the power and definition of <I>Alchemists</I>. Apart from the conventional problem-solution data, we argue that the evolution of code data reflects higher-level capabilities and is also valuable for the learning of Code LLMs. Thus, we decompose the process of <B>data evolution</B> into three tasks incorporated for training, including <B>instruction evolution</B>, <B>data filtering</B>, and <B>code review</B>, enabling further improvements of code comprehension capabilities.            <p>
             <p>
-                We conduct extensive experiments with various base models and develop the instruction-tuned <B><I>AlchemistCoder<\B><\I> series. As shown in Fig. 1, on two mainstream code benchmarks, HumanEval and MBPP, <B><I>AlchemistCoder<\I> holds a clear lead among all models of the same size (6.7/7B), and rivals or even surpasses larger models (15/33/70B)<\B>, demonstrating harmonized and formidable code capailities. More surprisingly, <B><I>AlchemistPrompts<\I><\B> allow the code corpus also <B>significantly improve the general capability<\B> of Code LLMs, as demonstrated by the improvements on MMLU, BBH, and GSM8K.
+                We conduct extensive experiments with various base models and develop the instruction-tuned <B><I>AlchemistCoder</B></I> series. As shown in Fig. 1, on two mainstream code benchmarks, HumanEval and MBPP, <B><I>AlchemistCoder</B></I> <B>holds a clear lead among all models of the same size (6.7/7B), and rivals or even surpasses larger models (15B/33B/70B)</B>, demonstrating harmonized and formidable code capailities. More surprisingly, <B><I>AlchemistPrompts</I> allow the code corpus also significantly improve the general capability of Code LLMs</B>, as demonstrated by the improvements on MMLU, BBH, and GSM8K.
             </p>
             </p>
             </p>
@@ -580,17 +585,18 @@ pre {
     </section>
     
     <section id="AlchemistCoder"/>
+
     <h2 style="text-align: center;">AlchemistCoder</h2>
-     
+    <hr>
+
     <section id="teaser-image">
-        <hr>
         <center>
             <figure>
                 <a>
                     <img width="95%" src="figure/overview.png"> 
                 </a>
                 <p class="caption", style="text-align: center;">
-                    Figure 2. Overview for developing <b><i>AlchemistCoder</i></b> series. 
+                    Figure 2. Overview for developing <i>AlchemistCoder</i> series. 
                 </p>
             </figure>
         </center>
@@ -598,25 +604,82 @@ pre {
      
     <div class="flex-row">
         <p>
-            <B>Multi-source Data Construction</B>To fully harness code LLM capabilities, we gather fine-tuning data from multiple sources and refine instructions' complexity through instruction evolution. Yet, integrating data from diverse sources for instruction tuning presents challenges. Different developers and LLMs offer varied solutions to similar coding questions, leading to diverse response styles and languages. Simply combining data from these sources results in models learning disparate responses, hindering alignment and performance. Therefore, directly mixing multi-source data is not a promising solution and can be detrimental.
+            <B>Multi-source Data Construction:</B> To fully harness code LLM capabilities, we gather fine-tuning data from multiple sources and refine instructions' complexity through instruction evolution. Yet, integrating data from diverse sources for instruction tuning presents challenges. Different developers and LLMs offer varied solutions to similar coding questions, leading to diverse response styles and languages. Simply combining data from these sources results in models learning disparate responses, hindering alignment and performance. Therefore, directly mixing multi-source data is not a promising solution and can be detrimental.
         </p>
         <p>
-            <B>AlchemistPrompt</B>To enhance model learning from diverse data, we introduce <I>AlchemistPrompts<\I>, tailored meta-prompts to reconcile data conflicts. Inspired by hindsight relabeling, we employ GPT-4 as an <I>Alchemist<\I> to generate these prompts, adjusting instructions to match data specifics. For example, if a task involves Python code with a Bellman-Ford algorithm, the prompt might request Python code utilizing dynamic programming. <I>AlchemistPrompt<\I> adjustments are minimal yet effective, with optimal performance achieved by incorporating them into just 5% of samples. This approach balances diversity and domain gap, elevating data quality. By retrospectively analyzing responses and reinterpreting them as alternative goals, <I>AlchemistPrompts<\I> refine model comprehension and instruction-following capabilities, fostering a more nuanced learning process.
+            <B>AlchemistPrompt:</B> To enhance model learning from diverse data, we introduce <I>AlchemistPrompts</I>, tailored meta-prompts to reconcile data conflicts. Inspired by hindsight relabeling, we employ GPT-4 as an <I>Alchemist</I> to generate these prompts, adjusting instructions to match data specifics. For example, if a task involves Python code with a Bellman-Ford algorithm, the prompt might request Python code utilizing dynamic programming. <I>AlchemistPrompt</I> adjustments are minimal yet effective, with optimal performance achieved by incorporating them into just 5% of samples. This approach balances diversity and domain gap, elevating data quality. By retrospectively analyzing responses and reinterpreting them as alternative goals, <I>AlchemistPrompts</I> refine model comprehension and instruction-following capabilities, fostering a more nuanced learning process.
         </p>
         <p>
-            <B>Code Comprehension Task</B>Existing training datasets for Code LLMs primarily center on code generation tasks, providing programming problems and solutions. However, we advocate for expanding beyond this, recognizing the value in the higher-level abilities demonstrated during code data construction. Thus, to enhance Code LLM performance, we introduce three code comprehension tasks related to data construction: instruction evolution, data filtering, and code review.
+            <B>Code Comprehension Task:</B> Existing training datasets for Code LLMs primarily center on code generation tasks, providing programming problems and solutions. However, we advocate for expanding beyond this, recognizing the value in the higher-level abilities demonstrated during code data construction. Thus, to enhance Code LLM performance, we introduce three code comprehension tasks related to data construction: instruction evolution, data filtering, and code review.
         </p>
     </section>
 
     <section id="results"/>
-    <hr>
     <h2 style="text-align: center;">Results</h2>
-    <div class="flex-row-center">
+    <hr>
+
         <p>
-        You can find the newest <a href="./leaderboard_subjective.html">subjective</a> and <a href="./leaderboard_objective.html">objective</a> leaderboards of our CriticBench.
+            We adopt 9 benchmarks to evaluate our <I>AlchemistCoder</I> series models, including 6 code benchmarks (<B>HumanEval</B>, <B>HumanEval+</B>, <B>MBPP</B>, <B>MBPP+</B>, <B>HumanEval-X</B>, and <B>DS-1000</B>) and 3 mainstream benchmarks (<B>MMLU</B> for multitask language understanding, <B>BBH</B> for comprehensive reasoning, and <B>GSM8K</B> for mathematical ability).
         </p>
+        <br>    
+        <center>
+            <figure>
+                <a>
+                    <img width="90%" src="figure/python_code_generation_results.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Table 1. Performance of <i>AlchemistCoder</i> series on Python code generation benchmarks (HumanEval/HumanEval+ and MBPP/MBPP+). 
+                </p>
+            </figure>
+        </center>
         <br>
+        <center>
+            <figure>
+                <a>
+                    <img width="55%" src="figure/generic_results.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Table 2. Performance of <i>AlchemistCoder</i> series on mainstream benchmarks for generic capabilities. 
+                </p>
+            </figure>
+        </center>
     </section>   
+
+
+    <section id="case study"/>
+    <h2 style="text-align: center;">Case Study</h2>
+    <hr>
+
+        <p>
+            The efficacy of <I>AlchemistPrompts</I> is twofold: <B>1) Harmonization between different data sources:</B> <I>AlchemistPrompts</I> generated from the same LLM have similar styles and can bridge the style differences between sources, while the introduction of <I>AlchemistPrompt</I>-customized data, accounting for only 5%, achieves a balance between data diversity and domain gaps; <B>2) Harmonization within instruction-response pairs:</B> As fine-grained and data-specific prompts, <I>AlchemistPrompts</I> are designed to augment instructions with specific programming languages, algorithm concepts, and other code-related information involved in responses, which can refine the alignment within instruction-response pairs and enhance the instruction-following abilities of fine-tuned models.
+        </p>
+        <br>    
+        <center>
+            <figure>
+                <a>
+                    <img width="55%" src="figure/alchemistprompt_case_1.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Figure 3. Example #1 of <i>AlchemistPrompts</i>. 
+                </p>
+            </figure>
+        </center>
+        <br>
+        <center>
+            <figure>
+                <a>
+                    <img width="55%" src="figure/alchemistprompt_case_2.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Figure 4. Example #2 of <i>AlchemistPrompts</i>. 
+                </p>
+            </figure>
+        </center>
+        <br>
+
+    </section>   
+
+
 
     <section>
         <hr>
