@@ -16,11 +16,11 @@ Cairong Zhao<sup>1†</sup>
 >
 > <sup>1</sup> Tongji University, <sup>2</sup> Shanghai AI Laboratory, <sup>3</sup> Chinese University of Hong Kong
 
-[![arXiv](https://img.shields.io/badge/arXiv-xxxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-xxxxxx-b31b1b.svg)](https://arxiv.org/abs/2405.19265)
 [![license](https://raw.githubusercontent.com/InternLM/InternLM/main/assets/license.svg)](./LICENSE)
 
 [[🤗 HuggingFace](https://huggingface.co/internlm/AlchemistCoder-DS-6.7B)]
-[[📃 Paper](https://arxiv.org/abs/xxxxx)]
+[[📃 Paper](https://arxiv.org/abs/2405.19265)]
 [[🌐 Project Page](https://internlm.github.io/AlchemistCoder/)]
 [<a href="#-quick-start"> 🚀&nbsp;Quick Start</a>]
 [<a href="#-acknowledgments">😃&nbsp;Acknowledgements</a>]
