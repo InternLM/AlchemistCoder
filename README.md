@@ -16,7 +16,7 @@ Cairong Zhao<sup>1†</sup>
 >
 > <sup>1</sup> Tongji University, <sup>2</sup> Shanghai AI Laboratory, <sup>3</sup> Chinese University of Hong Kong
 
-[![arXiv](https://img.shields.io/badge/arXiv-xxxxxx-b31b1b.svg)](https://arxiv.org/abs/2405.19265)
+[![arXiv](https://img.shields.io/badge/arXiv-2405.19265-b31b1b.svg)](https://arxiv.org/abs/2405.19265)
 [![license](https://raw.githubusercontent.com/InternLM/InternLM/main/assets/license.svg)](./LICENSE)
 
 [[🤗 HuggingFace](https://huggingface.co/internlm/AlchemistCoder-DS-6.7B)]
