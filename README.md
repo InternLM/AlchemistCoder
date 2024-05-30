@@ -197,5 +197,12 @@ If you have any questions, please create an issue on this repository or contact 
 If you find our work useful, please consider citing:
 
 ```bibtex
-
+@misc{song2024alchemistcoder,
+      title={AlchemistCoder: Harmonizing and Eliciting Code Capability by Hindsight Tuning on Multi-source Data}, 
+      author={Zifan Song and Yudong Wang and Wenwei Zhang and Kuikun Liu and Chengqi Lyu and Demin Song and Qipeng Guo and Hang Yan and Dahua Lin and Kai Chen and Cairong Zhao},
+      year={2024},
+      eprint={2405.19265},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
