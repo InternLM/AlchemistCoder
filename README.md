@@ -38,7 +38,7 @@ Cairong Zhao<sup>1†</sup>
 
 - **AlchemistPrompts**: Designed as data-specific prompts for harmonizing inherent conflicts in multi-source data and mitigating the instruction/response misalignment at a fined-grained level.
   
-- **Code Comprehenstion Tasks**: Sourced from the process of data construction, consisting of instruction evolution, data filtering, and code review.
+- **Code Comprehension Tasks**: Sourced from the process of data construction, consisting of instruction evolution, data filtering, and code review.
   
 - **Harmonized Multi-source Data**: Instruction tuned on 200M tokens, including 6 types of high-quality data.
   
