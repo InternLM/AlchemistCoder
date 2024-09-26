@@ -26,10 +26,10 @@ Cairong Zhao<sup>1†</sup>
 [<a href="#-acknowledgments">😃&nbsp;Acknowledgements</a>]
 [<a href="#-citation">🌟&nbsp;Citation</a>]
 
-## 📢 News
-* **(May 30, 2024)**
-  - Paper and models for *AlchemistCoder* are released 🔓
+## 📢 What's New
 
+- **[2024.09.26]** *AlchemistCoder* has been accepted by NeurIPS 2024. 🎉🎉🎉
+- **[2024.05.29]** Paper and models for *AlchemistCoder* are released. 🔥🔥🔥
 
 ## ✨ Highlights
 
